@@ -31,3 +31,10 @@ Multi-line continuation values are also not supported — continuation lines par
 - `loads(text) -> INIFile`
 - `dumps(ini) -> str`
 - `dump(ini, path)` — writes to file, creating parent directories
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
